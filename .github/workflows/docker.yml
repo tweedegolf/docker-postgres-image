@@ -14,12 +14,19 @@ jobs:
             latest: false
           - postgresql_version: 14
             latest: false
-    uses: "tweedegolf/actions-helpers/.github/workflows/container-image.yml@main"
-    with:
-        push: ${{ github.ref == 'refs/heads/main' }}
-        platforms: "linux/amd64,linux/arm64"
-        build-args: |
+
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
+
+      - name: Build container image
+        uses: tweedegolf/build-container-image@main
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          push: ${{ github.ref == 'refs/heads/main' }}
+          platforms: "linux/amd64,linux/arm64"
+          build-args: |
             PG_MAJOR=${{matrix.postgresql_version}}
-        tags: |
+          tags: |
             ghcr.io/tweedegolf/postgres:${{matrix.postgresql_version}}
             ${{ matrix.latest && 'ghcr.io/tweedegolf/postgres:latest' || '' }}
