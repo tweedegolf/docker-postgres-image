@@ -4,7 +4,8 @@ some often used additional extensions installed. It can be used for both
 production and development purposes. Currently these versions are supported
 with the tags listed:
 
-* 17: `17`, `latest`
+* 18: `18`, `latest`
+* 17: `17`
 * 16: `16`
 * 15: `15`
 * 14: `14`

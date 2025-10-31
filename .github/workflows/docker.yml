@@ -8,8 +8,10 @@ jobs:
     strategy:
       matrix:
         include:
-          - postgresql_version: 17
+          - postgresql_version: 18
             latest: true
+          - postgresql_version: 17
+            latest: false
           - postgresql_version: 16
             latest: false
           - postgresql_version: 15
